@@ -48,7 +48,7 @@ CTA buttons appear at minimum 3 times: hero, mid-page, bottom CTA block. All go 
 The hero is the page. If the hero fails, nothing else matters.
 
 **Structure (top to bottom):**
-- **Eyebrow line (optional)** - Location, category, or audience qualifier. ("Mobile Tire Shop in Des Moines" / "For Marketers Using Claude Code")
+- **Eyebrow line (optional)** - Location, category, or audience qualifier. ("Mobile Tire Shop in Austin" / "For Marketers Using Claude Code")
 - **Headline** - One sentence. Names the outcome or the transformation, not the product category. 6-14 words. ("New Tires Delivered & Installed Right Where You Are" / "Get the 20+ Claude Code skills I use daily to drive six figures in revenue")
 - **Subheadline** - 1-2 sentences. Explains what it is and removes the biggest friction. ("Skip the tire shop. We bring new tires, expert installation, and full-service repairs to your driveway, office, or job site.")
 - **Primary CTA button** - Action verb + outcome. ("Get Instant Access →", "Call (555) 555-5555", "Book a Free Estimate")

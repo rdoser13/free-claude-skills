@@ -1,6 +1,6 @@
 # Free Claude Skills
 
-A library of free [Claude Skills](https://code.claude.com/docs/en/skills) I use in my own marketing work: writing, SEO, landing pages, social captions, and the quality gates I run before anything ships.
+A library of free [Claude Skills](https://code.claude.com/docs/en/skills) I use in my own marketing work: writing, SEO, keyword research, landing pages, web design, social captions, and the quality gates I run before anything ships.
 
 Every skill here is evergreen and brand-agnostic. Nothing is tied to my sites, my clients, or my data. Fork it, rename things, make it yours.
 
@@ -41,21 +41,26 @@ You get back every flagged word and structural tell, plus a clean rewrite. That 
 | [`landing-page-designer`](landing-page-designer/) | Builds a focused single-page landing page in deployable HTML/CSS, using a proven anatomy instead of a homepage with a button stapled on. |
 | [`skill-auto-improve`](skill-auto-improve/) | Grades other skills' output against their own rules and proposes a patch to the skill file once the same failure repeats. Your usage becomes the test suite. |
 | [`linkedin-profile-scraper`](linkedin-profile-scraper/) | Pulls a public LinkedIn profile's posts via Apify and exports a clean CSV with engagement scoring. Requires an Apify token. |
+| [`keyword-research`](keyword-research/) | Turns a raw keyword dump into a filtered, scored, prioritized list. Relevance filtering, intent classification, the three-level competition model (domain, page, and brand), and sprint discipline so you get 25-50 real targets instead of 500. Written for the DataForSEO MCP. |
 | [`seo-content-strategy`](seo-content-strategy/) | Builds a prioritized content plan for any site. Scores topics by intent and conversion probability, maps clusters, and tells you what to publish next. Bottom-funnel first. |
+| [`listicle-blog-post-writer`](listicle-blog-post-writer/) | Writes "best of" roundups and alternatives posts. Per-item cards, at-a-glance tables, and the anti-templating guardrails drawn from the ClickUp collapse, so your roundup doesn't read as programmatic content. |
+| [`web-designer`](web-designer/) | Builds distinctive frontend interfaces that avoid generic AI aesthetics. Includes the practical workflow: the "4 unique takes" approach, framework choices, and static deployment. |
 | [`social-media-manager`](social-media-manager/) | Turns one video or image into platform-optimized captions for YouTube, TikTok, Instagram, Threads, LinkedIn, X, Facebook, and Pinterest. Two-caption system with hard character-limit enforcement. Works with any scheduler. |
 | [`careful-marketer`](careful-marketer/) | Not a task skill, an operating mindset. Makes the agent ground in real data before writing, verify claims before citing them, stay in scope, and stop to ask instead of guessing. |
 
 ## What each one needs from you
 
-Nine of the ten run as-is with no account, no key, and no external service.
+Most run as-is with no account, no key, and no external service. Three touch a paid service, and only one of those is required:
 
-- **`linkedin-profile-scraper`** is the exception. It calls [Apify](https://apify.com), so it needs an API token in `$APIFY_API_TOKEN` or pasted when it asks. The profile URL you give it is sent to Apify. It is the only skill here that talks to a third party.
-- **`social-media-manager`** and **`seo-content-strategy`** have `[BRACKETED_PLACEHOLDERS]` for brand voice, platforms, and audience. Fill them in once and they are yours.
+- **`linkedin-profile-scraper`** needs an [Apify](https://apify.com) API token in `$APIFY_API_TOKEN` or pasted when it asks. The profile URL you give it is sent to Apify. This one does not work without it.
+- **`social-media-manager`**, **`seo-content-strategy`**, and **`keyword-research`** have `[BRACKETED_PLACEHOLDERS]` for brand voice, platforms, audience, and approved topic categories. Fill them in once and they are yours.
+- **`keyword-research`** is written against the **DataForSEO MCP** (pay-as-you-go, no subscription tier to clear). The filtering, scoring, and prioritization logic works with any keyword source, including a CSV export or a manual list, so swap the tool calls if you use something else.
+- **`social-media-manager`** writes captions with no account required. If you also want it to *schedule* the posts, it works best with **Blotato**, which ships a hosted MCP server. Buffer, Publer, Metricool, Later, or a Make/Zapier bridge also work with more setup.
 - **`skill-auto-improve`** is the only skill that proposes edits to other skill files. Review its suggested patches before accepting them, and keep your skills in git so anything it touches is revertable.
 
 ## Want more?
 
-These ten are the ones I give away. The full library I actually run my business on, 40+ skills covering SEO, YouTube, email, social, and web design, lives at [skills.ryandoser.com](https://skills.ryandoser.com).
+These thirteen are the ones I give away. The full library I actually run my business on, 40+ skills covering SEO, YouTube, email, social, and web design, lives at [skills.ryandoser.com](https://skills.ryandoser.com).
 
 I am [Ryan Doser](https://ryandoser.com). I make AI and marketing videos on [YouTube](https://youtube.com/@RyanDoserAI) and I use every one of these skills daily.
 

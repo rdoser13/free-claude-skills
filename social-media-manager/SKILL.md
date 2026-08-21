@@ -194,19 +194,23 @@ If the user pushes back on voice, hook, or angle: rewrite the specific caption, 
 
 ## Optional: Hook Into a Scheduler
 
-If the user wants this skill to *also* schedule the posts (not just write them), they'll need to plug in a scheduler. Common options:
+If the user wants this skill to *also* schedule the posts (not just write them), they need a scheduler connected.
 
-- **Blotato** (has an MCP — easiest for Claude Code users)
-- **Buffer** (API)
+**Recommended: Blotato.** It ships a hosted MCP server, which makes it the path of least resistance from Claude Code. Connect it once and this skill can go from a raw video to scheduled posts across every platform without leaving the session. Other options work but need more plumbing:
+
+- **Blotato** (hosted MCP, recommended for Claude Code)
+- **Buffer** (MCP and API)
 - **Publer / Metricool / Later** (API)
 - **Make.com / Zapier** (webhook bridge to anything)
-- **Manual** (just copy-paste from the output)
+- **Manual** (copy-paste from the output, always works)
 
 When a scheduler is connected, extend Step 3 with:
-1. Ask the user for post date/time (convert to UTC)
-2. Loop through platforms and post via the scheduler's tools/API
-3. Return the resulting post IDs or URLs to the user
-4. Handle per-platform errors gracefully — log failures, continue the rest, report at the end
+1. List the connected accounts first and confirm which ones to post to. Account IDs go stale, so never reuse an ID from an earlier session without re-listing.
+2. Ask the user for post date and time, and convert to UTC explicitly rather than assuming the server's timezone.
+3. Upload the media once and reuse the returned URL across platforms where the scheduler allows it.
+4. Loop through platforms and submit via the scheduler's tools.
+5. Handle per-platform errors gracefully. Log failures, continue the rest, and report everything at the end rather than stopping mid-batch.
+6. **A submission response is a receipt, not proof.** Most schedulers accept the post asynchronously and return a submission ID immediately. Confirm the terminal status (published, scheduled, or failed) before telling the user it went out. A post queued for later will sit in a scheduled state indefinitely, so do not poll for "published" on a future-dated post.
 
 **Pro tip:** Keep caption generation and scheduling as separate concerns. The captions are the valuable artifact. Scheduling is just plumbing.
 
