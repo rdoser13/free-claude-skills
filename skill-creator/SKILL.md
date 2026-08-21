@@ -316,12 +316,13 @@ Then write `<path>/<skill-name>/SKILL.md` starting with YAML frontmatter:
 
 ```yaml
 ---
-name: <skill-name>
 description: <what it does + when to use it, written for the model deciding whether to load it>
 ---
 ```
 
-**The directory name MUST match the `name` field exactly**, or the skill will not load.
+**`description` is the field that matters.** It is what the model reads when deciding whether to load the skill, so a vague description means the skill never triggers. If omitted entirely, the first paragraph of the body is used instead.
+
+**The directory name becomes the command.** `.claude/skills/deploy-staging/SKILL.md` is invoked as `/deploy-staging`. A `name` field is optional and only sets the display label in skill listings, so keep the directory name correct rather than relying on it.
 
 Add `scripts/`, `references/`, or `assets/` subdirectories only if the skill actually needs them. A skill that is purely procedural guidance needs nothing but SKILL.md.
 
@@ -435,7 +436,7 @@ Once the skill is written, validate it before relying on it:
 **Manual validation checklist:**
 
 - [ ] `SKILL.md` exists and opens with valid YAML frontmatter between `---` fences
-- [ ] `name` matches the directory name exactly
+- [ ] The directory is named as you want the command to read, since the command comes from the directory
 - [ ] `description` states both WHAT the skill does and WHEN to use it. This is the only part the model sees when deciding whether to load the skill, so a vague description means the skill never triggers.
 - [ ] Every file the SKILL.md tells the user to run or read actually exists in the skill directory
 - [ ] Any scripts are executable and their paths are correct relative to the skill root
