@@ -1,6 +1,6 @@
 # Free Claude Marketing Skills
 
-**13 free Claude marketing skills for Claude Code**, covering SEO, keyword research, content strategy, listicles, landing pages, web design, social captions, and the quality gates that catch AI slop before it ships.
+**17 free Claude marketing skills for Claude Code**, covering SEO, keyword research, content strategy, CRO, local SEO, YouTube packaging, landing pages, web design, short-form video, social captions, and the quality gates that catch AI slop before it ships.
 
 Every skill is a single markdown file. No accounts, no build step, no vendor lock-in. They work in Claude Code, and anywhere else that reads the [Agent Skills format](https://code.claude.com/docs/en/skills).
 
@@ -14,6 +14,8 @@ Most free marketing skill packs are prompt collections with a new name. These ca
 - **`keyword-research`** treats a zero-volume result as an index gap rather than a verdict, and separates domain, page, and **brand** competition, the third of which decides AI visibility.
 - **`listicle-blog-post-writer`** encodes the guardrails from ClickUp's 97.6% traffic collapse so your roundups don't read as templated.
 - **`careful-marketer`** is a disposition, not a task: verify before claiming, stay in scope, stop and ask.
+- **`youtube-packaging`** is the piece almost no marketing skill repo has: titles, thumbnail text, hooks, descriptions, tags and timestamps from someone who packages videos for a 30K-subscriber channel. Most repos treat "video" as generation, not packaging, and packaging is what decides CTR.
+- **`cro-audit`** runs a 25-point pass/fail scorecard with five non-negotiables, so it works as a pre-ship gate and not just an opinion.
 
 Skills are just markdown. When Claude gets something wrong, you open the file, fix the rule, and it stops making that mistake. That feedback loop is the whole reason the format is worth learning.
 
@@ -27,10 +29,11 @@ cd free-claude-skills
 
 # All of them, available in every project:
 mkdir -p ~/.claude/skills
-cp -r anti-slop anti-spam careful-marketer keyword-research landing-page-designer \
-      linkedin-profile-scraper listicle-blog-post-writer seo-content-strategy \
-      setting-up-mcps skill-auto-improve skill-creator social-media-manager \
-      web-designer ~/.claude/skills/
+cp -r anti-slop anti-spam careful-marketer cro-audit keyword-research \
+      landing-page-designer linkedin-profile-scraper listicle-blog-post-writer \
+      local-seo-strategist seo-content-strategy setting-up-mcps short-form-video-scripts \
+      skill-auto-improve skill-creator social-media-manager web-designer \
+      youtube-packaging ~/.claude/skills/
 
 # Or just one, for a single project:
 cp -r anti-slop /path/to/your-project/.claude/skills/
@@ -38,7 +41,7 @@ cp -r anti-slop /path/to/your-project/.claude/skills/
 
 Restart Claude Code, then run `/skills` to confirm they loaded.
 
-Each skill must end up as **its own folder containing a `SKILL.md`**. The folder name becomes the command you type, so `anti-slop/SKILL.md` gives you `/anti-slop`. If you see one lone `SKILL.md` in your skills directory instead of thirteen folders, a trailing slash in a `cp` glob flattened them. Re-copy using the command above.
+Each skill must end up as **its own folder containing a `SKILL.md`**. The folder name becomes the command you type, so `anti-slop/SKILL.md` gives you `/anti-slop`. If you see one lone `SKILL.md` in your skills directory instead of seventeen folders, a trailing slash in a `cp` glob flattened them. Re-copy using the command above.
 
 ## Try one in 30 seconds
 
@@ -50,21 +53,47 @@ You get back every flagged word and structural tell, plus a clean rewrite. That 
 
 ## The skills
 
+### Writing and SEO
+
+| Skill | What it does |
+|---|---|
+| [`keyword-research`](keyword-research/) | Turns a raw keyword dump into a filtered, scored, prioritized list. Relevance filtering, intent classification, the three-level competition model (domain, page, and brand), and sprint discipline so you get 25-50 real targets instead of 500. Written for the DataForSEO MCP. |
+| [`seo-content-strategy`](seo-content-strategy/) | Builds a prioritized content plan for any site. Scores topics by intent and conversion probability, maps clusters, and tells you what to publish next. Bottom-funnel first. |
+| [`listicle-blog-post-writer`](listicle-blog-post-writer/) | Writes "best of" roundups and alternatives posts. Per-item cards, at-a-glance tables, and the anti-templating guardrails drawn from the ClickUp collapse. |
+| [`local-seo-strategist`](local-seo-strategist/) | Google Business Profile, the local 3-pack, and AI search visibility for a local business. Review velocity, GBP ranking levers, and service-area strategy. |
+
+### Quality gates
+
+| Skill | What it does |
+|---|---|
+| [`anti-slop`](anti-slop/) | Catches AI-generated fluff at the sentence level. Banned word lists, structural red flags, and rewrite patterns. |
+| [`anti-spam`](anti-spam/) | The gate `anti-slop` cannot be. Checks a draft against your *existing* posts for the scaled-content patterns search spam policies target: duplicated skeletons, repeated heading templates, publish bursts, uniform commercial footprints. Six pass/fail gates. |
+| [`cro-audit`](cro-audit/) | A 25-point conversion audit for any landing page, sales page, form, or pricing page. Runs as an audit on an existing page or a pre-ship gate on a new one, with five non-negotiables that block shipping. |
+| [`careful-marketer`](careful-marketer/) | Not a task skill, an operating mindset. Makes the agent ground in real data before writing, verify claims before citing them, stay in scope, and stop to ask instead of guessing. |
+
+### Video and social
+
+| Skill | What it does |
+|---|---|
+| [`youtube-packaging`](youtube-packaging/) | The full YouTube package: title formulas with character limits, thumbnail text strategy, title-thumbnail pairing, first-10-second hooks, description structure, tags, hashtags, and timestamps. Built from packaging a real channel, not theory. |
+| [`short-form-video-scripts`](short-form-video-scripts/) | Reels, Shorts, and TikTok scripts on a Hook to Truth to Do This Instead to CTA structure, plus matching captions. Built to earn trust with proof instead of hype. |
+| [`social-media-manager`](social-media-manager/) | Turns one video or image into platform-optimized captions for YouTube, TikTok, Instagram, Threads, LinkedIn, X, Facebook, and Pinterest. Two-caption system with hard character-limit enforcement. Works with any scheduler. |
+| [`linkedin-profile-scraper`](linkedin-profile-scraper/) | Pulls a public LinkedIn profile's posts via Apify and exports a clean CSV with engagement scoring. Requires an Apify token. |
+
+### Build and ship
+
+| Skill | What it does |
+|---|---|
+| [`landing-page-designer`](landing-page-designer/) | Builds a focused single-page landing page in deployable HTML/CSS, using a proven anatomy instead of a homepage with a button stapled on. |
+| [`web-designer`](web-designer/) | Builds distinctive frontend interfaces that avoid generic AI aesthetics. Includes the practical workflow: the "4 unique takes" approach, framework choices, and static deployment. |
+
+### Meta
+
 | Skill | What it does |
 |---|---|
 | [`skill-creator`](skill-creator/) | The skill that writes other skills. Describe what you want and it builds a properly structured `SKILL.md` for you. Start here. |
 | [`setting-up-mcps`](setting-up-mcps/) | Walks you through connecting Claude Code to external tools via MCP (GitHub, Notion, Sheets, Slack, databases) and debugs the connection when it breaks. |
-| [`anti-slop`](anti-slop/) | Catches AI-generated fluff at the sentence level. Banned word lists, structural red flags, and rewrite patterns. |
-| [`anti-spam`](anti-spam/) | The gate `anti-slop` cannot be. Checks a draft against your *existing* posts for scaled-content patterns that search spam policies target: duplicated skeletons, repeated heading templates, publish bursts, uniform commercial footprints. Six pass/fail gates. |
-| [`landing-page-designer`](landing-page-designer/) | Builds a focused single-page landing page in deployable HTML/CSS, using a proven anatomy instead of a homepage with a button stapled on. |
 | [`skill-auto-improve`](skill-auto-improve/) | Grades other skills' output against their own rules and proposes a patch to the skill file once the same failure repeats. Your usage becomes the test suite. |
-| [`linkedin-profile-scraper`](linkedin-profile-scraper/) | Pulls a public LinkedIn profile's posts via Apify and exports a clean CSV with engagement scoring. Requires an Apify token. |
-| [`keyword-research`](keyword-research/) | Turns a raw keyword dump into a filtered, scored, prioritized list. Relevance filtering, intent classification, the three-level competition model (domain, page, and brand), and sprint discipline so you get 25-50 real targets instead of 500. Written for the DataForSEO MCP. |
-| [`seo-content-strategy`](seo-content-strategy/) | Builds a prioritized content plan for any site. Scores topics by intent and conversion probability, maps clusters, and tells you what to publish next. Bottom-funnel first. |
-| [`listicle-blog-post-writer`](listicle-blog-post-writer/) | Writes "best of" roundups and alternatives posts. Per-item cards, at-a-glance tables, and the anti-templating guardrails drawn from the ClickUp collapse, so your roundup doesn't read as programmatic content. |
-| [`web-designer`](web-designer/) | Builds distinctive frontend interfaces that avoid generic AI aesthetics. Includes the practical workflow: the "4 unique takes" approach, framework choices, and static deployment. |
-| [`social-media-manager`](social-media-manager/) | Turns one video or image into platform-optimized captions for YouTube, TikTok, Instagram, Threads, LinkedIn, X, Facebook, and Pinterest. Two-caption system with hard character-limit enforcement. Works with any scheduler. |
-| [`careful-marketer`](careful-marketer/) | Not a task skill, an operating mindset. Makes the agent ground in real data before writing, verify claims before citing them, stay in scope, and stop to ask instead of guessing. |
 
 ## What each one needs from you
 
@@ -84,7 +113,7 @@ Claude marketing skills are markdown files that give Claude specialized marketin
 
 ### Are Claude skills free?
 
-The skill format is free and open, and the 13 in this repo are free under the MIT license. What costs money is the Claude plan you run them on. Skills work in Claude Code, which requires a paid plan: Pro at $20/month billed monthly ($17 on annual), or Max from $100/month. Verified against Claude's pricing page in August 2026, so check it for current figures.
+The skill format is free and open, and the 17 in this repo are free under the MIT license. What costs money is the Claude plan you run them on. Skills work in Claude Code, which requires a paid plan: Pro at $20/month billed monthly ($17 on annual), or Max from $100/month. Verified against Claude's pricing page in August 2026, so check it for current figures.
 
 ### Can I use Claude skills on the free plan?
 
@@ -113,7 +142,7 @@ Yes. MIT licensed, so you can use them commercially, modify them, and ship them 
 
 ## Want more?
 
-These thirteen are the ones I give away. The full library I actually run my business on, 40+ skills covering SEO, YouTube, email, social, and web design, lives at [skills.ryandoser.com](https://skills.ryandoser.com).
+These seventeen are the ones I give away. The full library I actually run my business on, 40+ skills covering SEO, YouTube, email, social, and web design, lives at [skills.ryandoser.com](https://skills.ryandoser.com).
 
 I am [Ryan Doser](https://ryandoser.com). I make AI and marketing videos on [YouTube](https://youtube.com/@RyanDoserAI) and I use every one of these skills daily.
 
