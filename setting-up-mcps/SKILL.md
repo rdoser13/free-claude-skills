@@ -52,7 +52,18 @@ Find the service's MCP documentation. Look for:
 - **npm package** or **command** for local tools
 - **Required environment variables** (API keys)
 
-For popular services, see [references/popular-services.md](references/popular-services.md).
+**Popular hosted MCP servers** (check each vendor's own docs for the current endpoint, since these move):
+
+| Service | Transport | Auth |
+|---|---|---|
+| GitHub | http | OAuth or a personal access token |
+| Notion | http | OAuth |
+| Linear | http | OAuth |
+| Sentry | http | OAuth |
+| Stripe | http | API key header |
+| Postgres / SQLite | stdio | connection string via `--env` |
+
+Vendors change endpoints and auth methods often. **Always confirm the field names against the vendor's own MCP documentation** rather than copying a config from a third-party aggregator. Different clients expect different keys for the same thing (`url` vs `serverUrl` vs `httpUrl`), and a wrong key fails silently instead of erroring.
 
 ### Step 3: Run the Add Command
 
@@ -131,8 +142,6 @@ claude mcp remove <name>
 ```
 
 ## Troubleshooting
-
-For common issues and solutions, see [references/troubleshooting.md](references/troubleshooting.md).
 
 **Quick fixes:**
 - **Windows "Connection closed"**: Add `cmd /c` before `npx` commands

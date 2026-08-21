@@ -12,15 +12,22 @@ Each folder is one skill. Drop the folder into your skills directory:
 
 ```bash
 git clone https://github.com/rdoser13/free-claude-skills.git
+cd free-claude-skills
 
-# All of them, for every project:
-cp -r free-claude-skills/*/ ~/.claude/skills/
+# All of them, available in every project:
+mkdir -p ~/.claude/skills
+cp -r anti-slop anti-spam careful-marketer keyword-research landing-page-designer \
+      linkedin-profile-scraper listicle-blog-post-writer seo-content-strategy \
+      setting-up-mcps skill-auto-improve skill-creator social-media-manager \
+      web-designer ~/.claude/skills/
 
 # Or just one, for a single project:
-cp -r free-claude-skills/anti-slop .claude/skills/
+cp -r anti-slop /path/to/your-project/.claude/skills/
 ```
 
 Restart Claude Code, then run `/skills` to confirm they loaded.
+
+Each skill must end up as its own folder containing a `SKILL.md`, and **the folder name has to match the `name:` field inside the file** or it will not load. If you see one lone `SKILL.md` in your skills directory instead of thirteen folders, a trailing slash in a `cp` glob flattened them. Re-copy using the command above.
 
 ## Try one in 30 seconds
 
@@ -69,3 +76,5 @@ Found a bug or want a skill improved? [Open an issue](https://github.com/rdoser1
 ## License
 
 MIT. Use them commercially, modify them, ship them in your own products. Attribution appreciated, not required.
+
+One exception: **`skill-creator`** is derived from [Anthropic's skill-creator](https://github.com/anthropics/skills) and remains under Apache License 2.0. It has been modified to be self-contained (its packaging and init scripts were rewritten as manual steps).
