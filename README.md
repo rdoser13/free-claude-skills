@@ -1,6 +1,6 @@
 # Free Claude Marketing Skills
 
-**17 free Claude marketing skills for Claude Code**, covering SEO, keyword research, content strategy, CRO, local SEO, YouTube packaging, landing pages, web design, short-form video, social captions, and the quality gates that catch AI slop before it ships.
+**15 free Claude marketing skills for Claude Code**, covering SEO, keyword research, content strategy, CRO, landing pages, web design, short-form video, social captions, and the quality gates that catch AI slop before it ships.
 
 Every skill is a single markdown file. No accounts, no build step, no vendor lock-in. They work in Claude Code, and anywhere else that reads the [Agent Skills format](https://code.claude.com/docs/en/skills).
 
@@ -14,8 +14,7 @@ Most free marketing skill packs are prompt collections with a new name. These ca
 - **`keyword-research`** treats a zero-volume result as an index gap rather than a verdict, and separates domain, page, and **brand** competition, the third of which decides AI visibility.
 - **`listicle-blog-post-writer`** encodes the guardrails from ClickUp's 97.6% traffic collapse so your roundups don't read as templated.
 - **`careful-marketer`** is a disposition, not a task: verify before claiming, stay in scope, stop and ask.
-- **`youtube-packaging`** is the piece almost no marketing skill repo has: titles, thumbnail text, hooks, descriptions, tags and timestamps from someone who packages videos for a 30K-subscriber channel. Most repos treat "video" as generation, not packaging, and packaging is what decides CTR.
-- **`cro-audit`** runs a 25-point pass/fail scorecard with five non-negotiables, so it works as a pre-ship gate and not just an opinion.
+- **`cro-audit`** runs a 25-point pass/fail scorecard with five non-negotiables, so it works as a pre-ship gate and not just an opinion, on any landing page, form, or pricing page.
 
 Skills are just markdown. When Claude gets something wrong, you open the file, fix the rule, and it stops making that mistake. That feedback loop is the whole reason the format is worth learning.
 
@@ -31,9 +30,9 @@ cd free-claude-skills
 mkdir -p ~/.claude/skills
 cp -r anti-slop anti-spam careful-marketer cro-audit keyword-research \
       landing-page-designer linkedin-profile-scraper listicle-blog-post-writer \
-      local-seo-strategist seo-content-strategy setting-up-mcps short-form-video-scripts \
+      seo-content-strategy setting-up-mcps short-form-video-scripts \
       skill-auto-improve skill-creator social-media-manager web-designer \
-      youtube-packaging ~/.claude/skills/
+      ~/.claude/skills/
 
 # Or just one, for a single project:
 cp -r anti-slop /path/to/your-project/.claude/skills/
@@ -41,7 +40,7 @@ cp -r anti-slop /path/to/your-project/.claude/skills/
 
 Restart Claude Code, then run `/skills` to confirm they loaded.
 
-Each skill must end up as **its own folder containing a `SKILL.md`**. The folder name becomes the command you type, so `anti-slop/SKILL.md` gives you `/anti-slop`. If you see one lone `SKILL.md` in your skills directory instead of seventeen folders, a trailing slash in a `cp` glob flattened them. Re-copy using the command above.
+Each skill must end up as **its own folder containing a `SKILL.md`**. The folder name becomes the command you type, so `anti-slop/SKILL.md` gives you `/anti-slop`. If you see one lone `SKILL.md` in your skills directory instead of fifteen folders, a trailing slash in a `cp` glob flattened them. Re-copy using the command above.
 
 ## Try one in 30 seconds
 
@@ -60,7 +59,6 @@ You get back every flagged word and structural tell, plus a clean rewrite. That 
 | [`keyword-research`](keyword-research/) | Turns a raw keyword dump into a filtered, scored, prioritized list. Relevance filtering, intent classification, the three-level competition model (domain, page, and brand), and sprint discipline so you get 25-50 real targets instead of 500. Written for the DataForSEO MCP. |
 | [`seo-content-strategy`](seo-content-strategy/) | Builds a prioritized content plan for any site. Scores topics by intent and conversion probability, maps clusters, and tells you what to publish next. Bottom-funnel first. |
 | [`listicle-blog-post-writer`](listicle-blog-post-writer/) | Writes "best of" roundups and alternatives posts. Per-item cards, at-a-glance tables, and the anti-templating guardrails drawn from the ClickUp collapse. |
-| [`local-seo-strategist`](local-seo-strategist/) | Google Business Profile, the local 3-pack, and AI search visibility for a local business. Review velocity, GBP ranking levers, and service-area strategy. |
 
 ### Quality gates
 
@@ -75,7 +73,6 @@ You get back every flagged word and structural tell, plus a clean rewrite. That 
 
 | Skill | What it does |
 |---|---|
-| [`youtube-packaging`](youtube-packaging/) | The full YouTube package: title formulas with character limits, thumbnail text strategy, title-thumbnail pairing, first-10-second hooks, description structure, tags, hashtags, and timestamps. Built from packaging a real channel, not theory. |
 | [`short-form-video-scripts`](short-form-video-scripts/) | Reels, Shorts, and TikTok scripts on a Hook to Truth to Do This Instead to CTA structure, plus matching captions. Built to earn trust with proof instead of hype. |
 | [`social-media-manager`](social-media-manager/) | Turns one video or image into platform-optimized captions for YouTube, TikTok, Instagram, Threads, LinkedIn, X, Facebook, and Pinterest. Two-caption system with hard character-limit enforcement. Works with any scheduler. |
 | [`linkedin-profile-scraper`](linkedin-profile-scraper/) | Pulls a public LinkedIn profile's posts via Apify and exports a clean CSV with engagement scoring. Requires an Apify token. |
@@ -113,7 +110,7 @@ Claude marketing skills are markdown files that give Claude specialized marketin
 
 ### Are Claude skills free?
 
-The skill format is free and open, and the 17 in this repo are free under the MIT license. What costs money is the Claude plan you run them on. Skills work in Claude Code, which requires a paid plan: Pro at $20/month billed monthly ($17 on annual), or Max from $100/month. Verified against Claude's pricing page in August 2026, so check it for current figures.
+The skill format is free and open, and the 15 in this repo are free under the MIT license. What costs money is the Claude plan you run them on. Skills work in Claude Code, which requires a paid plan: Pro at $20/month billed monthly ($17 on annual), or Max from $100/month. Verified against Claude's pricing page in August 2026, so check it for current figures.
 
 ### Can I use Claude skills on the free plan?
 
@@ -142,7 +139,17 @@ Yes. MIT licensed, so you can use them commercially, modify them, and ship them 
 
 ## Want more?
 
-These seventeen are the ones I give away. The full library I actually run my business on, 40+ skills covering SEO, YouTube, email, social, and web design, lives at [skills.ryandoser.com](https://skills.ryandoser.com).
+These fifteen are the ones I give away, and they are the real files, not trimmed demos.
+
+The full library is **[the Claude Skills Stack](https://skills.ryandoser.com)**: 40+ skills, one-time price, lifetime updates. What is in there and deliberately not here:
+
+- **YouTube SEO Packaging**: title formulas, thumbnail text strategy, title-thumbnail pairing, first-10-second hooks, description templates, tags and timestamps. The packaging system from a 30K-subscriber channel, and the thing that actually moves CTR.
+- **YouTube Thumbnail Designer** and **Infographic Generator**: the image pipelines, not just the copy
+- **Local SEO Strategist**: Google Business Profile, the map pack, review velocity
+- **Email Newsletter Writer**, **Email Sequence Builder**, **Lead Magnet Creator**
+- **GEO / AI Search Optimizer**, **Internal Linking Architect**, **Comparison Writer**
+- **Paid Ads**, **Personal Brand Website**, **Brand Kit Builder**
+- Plus the setup video, a Start Here guide, and my personal `AGENTS.md`
 
 I am [Ryan Doser](https://ryandoser.com). I make AI and marketing videos on [YouTube](https://youtube.com/@RyanDoserAI) and I use every one of these skills daily.
 
