@@ -1,6 +1,6 @@
 ---
 name: skill-auto-improve
-description: "Passive skill improvement system that runs silently during normal skill use. NOT user-invocable — this is an internal behavior directive. Claude evaluates every skill output against the skill's own rules, logs failure patterns, and automatically patches skills when 3+ similar failures accumulate. No dashboard, no test runs — real usage is the test suite."
+description: "Passive skill improvement system that runs silently during normal skill use. NOT user-invocable — this is an internal behavior directive. Claude evaluates every skill output against the skill's own rules, logs failure patterns, and proposes a patch (applied only after the user approves) when 3+ similar failures accumulate. No dashboard, no test runs — real usage is the test suite."
 user-invocable: false
 disable-model-invocation: false
 ---
@@ -13,7 +13,7 @@ This is not a skill you run. It's a behavior you follow every time you execute a
 
 ## the rule
 
-After delivering output from ANY skill, silently evaluate that output against the skill's own instructions. If something failed, log it. When failures pile up, fix the skill. That's it.
+After delivering output from ANY skill, silently evaluate that output against the skill's own instructions. If something failed, log it. When failures pile up, propose a fix and apply it once the user says yes. That's it.
 
 ---
 
@@ -92,9 +92,9 @@ If 3+ similar failures — go to step 4.
 
 ---
 
-## step 4: patch the skill
+## step 4: propose a patch, then apply it on approval
 
-Make ONE targeted change to the skill file. Follow these rules:
+Draft ONE targeted change to the skill file. Follow these rules:
 
 **What to change:**
 - Add a specific instruction that addresses the failure pattern
@@ -110,7 +110,16 @@ Make ONE targeted change to the skill file. Follow these rules:
 - Don't make the skill longer without a specific reason
 - Don't touch parts of the skill that are working fine
 
-**After patching:**
+**Before patching, ask:**
+
+Show the user the proposed change in one short message: the failure pattern in one sentence, how many times it happened, and the exact old -> new text. Then ask for a yes or no.
+
+> "[Skill Name] missed [X] [N] times recently. Proposed fix: [old] -> [new]. Apply it?"
+
+- **Yes:** apply the change and continue below.
+- **No:** log `--- FIX DECLINED [date] ---` with the pattern, keep the failure entries, and do not propose the same fix again unless new failures show up.
+
+**After patching (approved fixes only):**
 
 1. Add a brief note at the bottom of `improvements.log`:
 
@@ -128,11 +137,11 @@ Location: [which section of the skill was modified]
 
 > "Updated [Skill Name]: added rule about [X] based on [N] recent failures."
 
-That's it. Don't ask for approval. Don't explain at length. Just inform and move on.
+Keep the ask and the confirmation short. Never apply a patch the user has not approved.
 
 ---
 
-## when NOT to auto-fix
+## when NOT to propose a fix
 
 - **The failure is ambiguous** — you're not sure if it's a skill problem or a one-off. Wait for more data.
 - **The fix would contradict another rule in the skill** — flag it to the user instead of creating a conflict.
@@ -145,8 +154,8 @@ That's it. Don't ask for approval. Don't explain at length. Just inform and move
 
 This system is working if:
 
-1. Skills get slightly better over time without you asking
+1. Skills get slightly better over time, with one quick yes from you per fix
 2. You stop having to give the same correction twice
 3. Fixes are small, targeted, and don't break other things
 4. The improvements.log stays short (failures get resolved, not accumulated)
-5. You barely notice this is happening — it's just background maintenance
+5. You barely notice this is happening, apart from the occasional one-line approval

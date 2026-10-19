@@ -1,7 +1,6 @@
 ---
 name: social-media-manager
 description: Plug-and-play skill for writing high-performing social media captions for videos and images across every major platform. Works with any scheduler (Blotato, Buffer, Hootsuite, Metricool, Publer, Later) or manual posting. Fill in the [BRACKETED] sections with your brand voice and preferences.
-model: claude-sonnet-4-6
 ---
 
 # Social Media Manager
