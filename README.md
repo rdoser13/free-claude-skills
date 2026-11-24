@@ -1,6 +1,6 @@
 # Free Claude Marketing Skills for Claude Code
 
-**15 free Claude marketing skills for Claude Code**, covering SEO, keyword research, content strategy, CRO, landing pages, web design, short-form video, social captions, and the quality gates that catch AI slop before it ships.
+**16 free Claude marketing skills for Claude Code**, covering SEO, keyword research, content strategy, CRO, landing pages, web design, short-form video, social captions, software buying research, and the quality gates that catch AI slop before it ships.
 
 Every skill is one folder with a `SKILL.md` file inside. No build step, no vendor lock-in, and only one skill needs a third-party account to work. They follow the [Agent Skills format](https://code.claude.com/docs/en/skills) and were built and tested in Claude Code.
 
@@ -10,7 +10,7 @@ Built by [Ryan Doser](https://ryandoser.com), an AI-first marketer who runs SEO 
 
 | | |
 |---|---|
-| Skills | 15 (SEO, content, CRO, social, video, web design, quality gates) |
+| Skills | 16 (SEO, content, CRO, social, video, web design, software research, quality gates) |
 | Cost | Free, MIT license (`skill-creator` keeps Anthropic's Apache 2.0 license) |
 | Works in | Claude Code. Any Agent Skills reader should work, untested outside Claude Code |
 | Needs a third-party account | Only `linkedin-profile-scraper` (an Apify token, and Apify's free tier covers small runs). `keyword-research` is written for DataForSEO but works with a CSV |
@@ -33,7 +33,8 @@ mkdir -p ~/.claude/skills
 cp -r anti-slop anti-spam careful-marketer cro-audit keyword-research \
       landing-page-designer linkedin-profile-scraper listicle-blog-post-writer \
       seo-content-strategy setting-up-mcps short-form-video-scripts \
-      skill-auto-improve skill-creator social-media-manager web-designer \
+      skill-auto-improve skill-creator social-media-manager software-deal-checker \
+      web-designer \
       ~/.claude/skills/
 
 # Or just one, for a single project:
@@ -43,7 +44,7 @@ cp -r anti-slop /path/to/your-project/.claude/skills/
 
 Start a new Claude Code session, then run `/skills` to confirm they loaded.
 
-Each skill must end up as **its own folder containing a `SKILL.md`**. The folder name becomes the command you type, so `anti-slop/SKILL.md` gives you `/anti-slop`. (`skill-auto-improve` is the exception: it runs in the background and has no command.) If you see one lone `SKILL.md` in your skills directory instead of fifteen folders, a trailing slash in a `cp` glob flattened them. Re-copy using the command above.
+Each skill must end up as **its own folder containing a `SKILL.md`**. The folder name becomes the command you type, so `anti-slop/SKILL.md` gives you `/anti-slop`. (`skill-auto-improve` is the exception: it runs in the background and has no command.) If you see one lone `SKILL.md` in your skills directory instead of sixteen folders, a trailing slash in a `cp` glob flattened them. Re-copy using the command above.
 
 ### Try one first
 
@@ -70,6 +71,7 @@ You get back every flagged word and structural tell, plus a clean rewrite. That 
 | [`landing-page-designer`](landing-page-designer/) | Build and ship | Builds a focused single-page landing page in deployable HTML/CSS, built around one goal per page. |
 | [`web-designer`](web-designer/) | Build and ship | Builds distinctive frontend interfaces that avoid the generic AI look. Includes the "4 unique takes" approach, framework choices and static deployment. |
 | [`skill-creator`](skill-creator/) | Meta | The skill that writes other skills. Describe what you want and it builds a properly structured `SKILL.md`. Start here if you want your own. |
+| [`software-deal-checker`](software-deal-checker/) | Research | Checks whether a software deal or plan is worth it before you pay. Works out the real 24-month cost, what it renews at and how to cancel, says "not stated" instead of guessing, compares tools on true cost, audits your current subscriptions, and gives you scheduled tasks for an AI assistant to watch prices and remind you before a renewal. Works for Black Friday and any other week. |
 | [`setting-up-mcps`](setting-up-mcps/) | Meta | Walks you through connecting Claude Code to outside tools via MCP (GitHub, Notion, Sheets, Slack, databases) and debugs the connection when it breaks. |
 | [`skill-auto-improve`](skill-auto-improve/) | Meta | Runs in the background, grades other skills' output against their own rules, and after 3+ similar failures proposes a one-line fix to that skill, applied only when you say yes. Your usage becomes the test suite. |
 
@@ -102,7 +104,7 @@ Claude marketing skills are markdown files that give Claude specialized marketin
 
 ### Are these Claude skills free?
 
-Yes. All 15 are free under the MIT license (with `skill-creator` under Apache 2.0). What costs money is how you run Claude Code, which needs a paid Claude plan or Anthropic API billing. Check [Claude's pricing page](https://claude.com/pricing) for current plans.
+Yes. All 16 are free under the MIT license (with `skill-creator` under Apache 2.0). What costs money is how you run Claude Code, which needs a paid Claude plan or Anthropic API billing. Check [Claude's pricing page](https://claude.com/pricing) for current plans.
 
 ### Can I use Claude skills on the free plan?
 
@@ -136,9 +138,9 @@ Corey Haines' [marketingskills](https://github.com/coreyhaines31/marketingskills
 
 ## Want more?
 
-These fifteen are the ones I give away.
+These sixteen are the ones I give away.
 
-The full library is **[the Claude Skills Stack](https://skills.ryandoser.com)**: 40+ skills, one-time price, lifetime updates. What is in there and deliberately not here:
+The full library is **[the Claude Skills Stack](https://skills.ryandoser.com)**: 60+ skills, one-time price, lifetime updates. What is in there and deliberately not here:
 
 - **YouTube SEO Packaging**: title formulas, thumbnail text strategy, title-thumbnail pairing, first-10-second hooks, description templates, tags and timestamps. The packaging system from a 40K-subscriber channel.
 - **YouTube Thumbnail Designer** and **Infographic Generator**: the image pipelines, not just the copy
